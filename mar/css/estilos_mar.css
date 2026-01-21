@@ -1,0 +1,436 @@
+/* ==============================
+   RESET
+============================== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+/* ==============================
+   VARIABLES BASE (DEFAULT)
+============================== */
+.mar_layout {
+    --mar-color-bg-sidebar: #1e293b;
+    --mar-color-bg-nav: #334155;
+    --mar-color-bg-nav-hover: #475569;
+    --mar-color-bg-active: #0ea5e9;
+
+    --mar-color-bg-content: #ffffff;
+    --mar-color-text-main: #1e293b;
+    --mar-color-text-muted: #475569;
+    --mar-color-text-light: #ffffff;
+
+    --mar-color-border: #334155;
+}
+
+/* ==============================
+   TEMA AZUL OSCURO PERSONALIZADO
+============================== */
+.mar_layout.mar_theme_custom {
+    --mar-color-bg-sidebar: #2b2b2b; /* fondo principal */
+    --mar-color-bg-nav: #464646; /* items nav */
+    --mar-color-bg-nav-hover: #373ca6; /* hover */
+    --mar-color-bg-active: #0067a0; /* activo / acento */
+
+    --mar-color-bg-content: #ffffff;
+    --mar-color-text-main: #2b2b2b;
+    --mar-color-text-muted: #464646;
+    --mar-color-text-light: #ffffff;
+
+    --mar-color-border: #0969a1;
+}
+
+/* ==============================
+   LAYOUT
+============================== */
+.mar_layout {
+    display: grid;
+    grid-template-columns: 240px 1fr;
+    grid-template-rows: auto 1fr auto;
+    min-height: 100vh;
+    background: var(--mar-color-bg-content);
+}
+.mar_top {
+    grid-column: 1 / -1; /* ocupa 100% */
+}
+.img-fluid {
+    max-width: 100%;
+    height: auto;
+}
+/* ==============================
+   SIDEBAR / NAV
+============================== */
+.mar_sidebar {
+    width: 240px;
+    background: var(--mar-color-bg-sidebar);
+    color: var(--mar-color-text-light);
+    display: flex;
+    flex-direction: column;
+    grid-column: 1;
+}
+
+/* ---------- Mobile nav (Prev / Title / Next) ---------- */
+.mar_nav_mobile {
+    display: none;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    padding: 12px 14px;
+    background: var(--mar-color-bg-sidebar);
+    border-bottom: 1px solid var(--mar-color-border);
+}
+
+.mar_nav_btn {
+    background: var(--mar-color-bg-active);
+    border: none;
+    color: var(--mar-color-text-light);
+    padding: 6px 14px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.mar_nav_btn:hover {
+    background: #0e69a2;
+}
+
+.mar_nav_btn:active {
+    transform: scale(0.97);
+}
+
+.mar_nav_title {
+    flex: 1;
+    text-align: center;
+    font-weight: bold;
+    /*white-space: nowrap;*/
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* ---------- Desktop nav (Tabs) ---------- */
+.mar_nav {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    padding: 16px;
+}
+
+.mar_nav_item {
+    padding: 12px;
+    background: var(--mar-color-bg-nav);
+    border-radius: 6px;
+    cursor: pointer;
+    text-align: center;
+    transition: background 0.25s ease;
+    user-select: none;
+}
+
+.mar_nav_item:hover {
+    background: var(--mar-color-bg-nav-hover);
+}
+
+.mar_nav_item.mar_active {
+    background: var(--mar-color-bg-active);
+}
+
+/* ==============================
+   CONTENT
+============================== */
+.mar_content {
+    flex: 1;
+    padding: 24px;
+    background: var(--mar-color-bg-content);
+    color: var(--mar-color-text-main);
+    grid-column: 2;
+}
+
+.mar_tab {
+    display: none;
+    animation: marFadeIn 200ms ease;
+}
+
+.mar_tab.mar_active {
+    display: block;
+}
+
+@keyframes marFadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+.mar_tab h3 {
+    margin-bottom: 12px;
+    color: var(--mar-color-text-main);
+}
+
+.mar_tab p {
+    color: var(--mar-color-text-muted);
+    line-height: 1;
+    margin: 1em 0.5em;
+}
+.mar_tab ol,
+.mar_tab ul {
+    color: var(--mar-color-text-muted);
+    line-height: 1;
+    margin: 0.5em 3em;
+}
+.mar_bottom {
+    grid-column: 1 / -1;
+}
+/* ==============================
+   panel interno
+============================== */
+.mar_subtopics {
+    margin-top: 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+.mar_subtopic {
+    border: 1px solid var(--mar-color-border, #ccc);
+    border-radius: 8px;
+    overflow: hidden;
+    background: var(--mar-color-bg-content, #fff);
+}
+.mar_subtopic_header {
+    width: 100%;
+    padding: 14px 16px;
+    background: none;
+    border: none;
+    cursor: pointer;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--mar-color-text, #2b2b2b);
+
+    transition: background-color 150ms ease;
+}
+
+.mar_subtopic_header:hover {
+    background-color: rgba(0, 0, 0, 0.04);
+}
+.mar_subtopic_icon {
+    font-size: 18px;
+    transition: transform 200ms ease;
+}
+.mar_subtopic.mar_open .mar_subtopic_body {
+    max-height: 500px; /* suficiente para contenido breve */
+    padding: 16px;
+    opacity: 1;
+}
+
+.mar_subtopic.mar_open .mar_subtopic_icon {
+    transform: rotate(45deg);
+}
+
+.mar_subtopic_body {
+    max-height: 0;
+    overflow: hidden;
+    padding: 0 16px;
+
+    transition:
+        max-height 300ms ease,
+        padding 200ms ease,
+        opacity 200ms ease;
+
+    opacity: 0;
+}
+@media (prefers-reduced-motion: reduce) {
+    .mar_subtopic_body,
+    .mar_subtopic_icon {
+        transition: none;
+    }
+}
+/* ==============================
+ SUBTABS
+============================== */
+
+.mar_subtabs_buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 12px;
+}
+
+.mar_subtab_btn {
+    flex: 1 1 auto;
+    padding: 10px 14px;
+    border: 1px solid var(--mar-color-border, #ccc);
+    border-radius: 6px;
+    background: var(--mar-color-bg-content, #fff);
+    cursor: pointer;
+    font-size: 14px;
+    transition:
+        background-color 150ms,
+        transform 100ms,
+        box-shadow 150ms;
+}
+
+/* Animación “clickeame” */
+.mar_subtab_btn:hover {
+    background-color: rgba(0, 0, 0, 0.05);
+    transform: translateY(-2px);
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+}
+
+.mar_subtab_btn:active {
+    transform: translateY(0);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+}
+
+.mar_subtab_btn.mar_active {
+    background-color: var(--mar-color-primary, #0067a0);
+    color: #fff;
+}
+
+.mar_subtabs_content {
+    border: 1px solid var(--mar-color-border, #ccc);
+    border-radius: 6px;
+    padding: 16px;
+    background: var(--mar-color-bg-content, #fff);
+    min-height: 80px; /* espacio mínimo para el mensaje inicial */
+}
+
+.mar_subtab_content {
+    display: none;
+}
+
+.mar_subtab_content.mar_active {
+    display: block;
+}
+
+.mar_subtab_message {
+    display: block;
+    color: #555;
+    font-style: italic;
+}
+
+/* Al seleccionar un subtab, el mensaje desaparece */
+.mar_subtabs_container.subtab-selected .mar_subtab_message {
+    display: none;
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+    .mar_subtabs_buttons {
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+    .mar_subtab_btn {
+        flex: 0 0 auto;
+        min-width: 120px;
+    }
+}
+/* ==============================
+   STEP CONTENT
+============================== */
+
+.mar_steps_container {
+    margin-top: 24px;
+    border: 1px solid var(--mar-color-border, #ccc);
+    border-radius: 8px;
+    padding: 16px;
+    background: var(--mar-color-bg-content, #fff);
+}
+
+/* Indicador */
+.mar_steps_progress {
+    margin-bottom: 12px;
+    font-size: 14px;
+    color: var(--mar-color-text-muted);
+}
+
+/* Paso */
+.mar_step {
+    display: none;
+    animation: marFadeIn 200ms ease;
+}
+
+.mar_step.mar_active {
+    display: block;
+}
+
+.mar_step h4 {
+    margin-bottom: 10px;
+    color: var(--mar-color-text-main);
+}
+
+/* Navegación */
+.mar_steps_nav {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+    gap: 12px;
+}
+
+.mar_step_btn {
+    flex: 1;
+    padding: 10px 14px;
+    border-radius: 6px;
+    border: none;
+    cursor: pointer;
+    background: var(--mar-color-bg-active);
+    color: var(--mar-color-text-light);
+    font-size: 14px;
+    transition:
+        background-color 150ms ease,
+        transform 100ms ease;
+}
+
+.mar_step_btn:hover:not(:disabled) {
+    background-color: #0e69a2;
+    transform: translateY(-1px);
+}
+
+.mar_step_btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+/* Mobile refinamiento */
+@media (max-width: 600px) {
+    .mar_steps_nav {
+        flex-direction: column;
+    }
+}
+
+/* ==============================
+   RESPONSIVE (MÓVIL)
+============================== */
+
+@media (max-width: 768px) {
+    .mar_layout {
+        flex-direction: column;
+        grid-template-columns: 1fr;
+        grid-template-rows: auto auto 1fr auto;
+    }
+
+    .mar_sidebar {
+        width: 100%;
+        grid-column: 1;
+    }
+
+    .mar_nav_mobile {
+        display: flex;
+    }
+
+    .mar_nav {
+        display: none;
+    }
+
+    .mar_content {
+        padding: 16px;
+        grid-column: 1;
+    }
+}
