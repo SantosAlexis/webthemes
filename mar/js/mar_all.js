@@ -7,7 +7,7 @@ const nextBtn = document.querySelector(".mar_next");
 
 const totalTabs = tabs.length;
 
-// 🔹 detectar tab inicial
+//detectar tab inicial
 let currentIndex = navItems.findIndex((item) => item.classList.contains("mar_active"));
 
 if (currentIndex === -1) {
@@ -16,7 +16,7 @@ if (currentIndex === -1) {
     tabs[0].classList.add("mar_active");
 }
 
-// 🔹 sincronizar título móvil
+// sincronizar título móvil
 mobileTitle.textContent = navItems[currentIndex].textContent;
 
 function updateTabs(index) {
@@ -132,3 +132,4 @@ document.querySelectorAll(".mar_steps_container").forEach((container) => {
 
     updateSteps();
 });
+
