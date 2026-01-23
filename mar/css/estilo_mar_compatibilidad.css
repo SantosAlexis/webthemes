@@ -1,0 +1,8 @@
+/*Estilos personalizados para asegurar la visibilidad en vista movil y escritorio de Moodle con el tema Boost*/
+
+@media (max-width: 768px) {
+    .pagelayout-frontpage .dashboard-card,
+    .pagelayout-coursecategory .dashboard-card {
+        max-width: 100% !important;
+    }
+}
