@@ -71,10 +71,10 @@
                     $("#quiz-progress-text").text(`${data.answered} / ${data.total} (${data.percent}%)`);
                 }
 
-                // init
+              
                 updateBar();
 
-                // eventos controlados
+              
                 $("#region-main").on("change", "input, select, textarea", function () {
                     setTimeout(updateBar, 250);
                 });
@@ -83,7 +83,7 @@
                     setTimeout(updateBar, 300);
                 });
 
-                // fallback seguro
+                
                 setInterval(updateBar, 4000);
             });
         });
