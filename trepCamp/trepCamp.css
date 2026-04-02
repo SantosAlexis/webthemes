@@ -1,0 +1,7 @@
+body#page-course-view-remuiformat header.hasbackground.design-1 .header-main-section .category .badge .text_to_html {
+    color: #2e63ed !important;
+}
+.branchbuttoncontainer.horizontal:has(form[action*="mod/lesson/continue"]) {
+    display: flex;
+    justify-content: flex-end;
+}
